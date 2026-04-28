@@ -1,0 +1,10 @@
+pandas
+requests
+python-dotenv
+openai
+streamlit
+plotly
+pytest
+fpdf2
+tenacity
+tqdm
