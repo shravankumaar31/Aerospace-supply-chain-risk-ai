@@ -21,7 +21,7 @@ An end-to-end pipeline that ingests public aerospace supply chain data (BLS, FAA
 src/ingest/      # API clients and raw data fetchers
 src/transform/   # Cleaning, normalisation, feature engineering
 src/risk/        # Risk scoring models and aggregation
-src/ai/          # OpenAI prompt templates and brief generation
+src/ai/          # ClaudeAI prompt templates and brief generation
 src/app/         # Streamlit dashboard
 tests/           # pytest unit and integration tests
 outputs/briefs/  # Generated PDF procurement briefs
