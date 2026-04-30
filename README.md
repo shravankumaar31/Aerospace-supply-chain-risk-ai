@@ -9,7 +9,7 @@ An end-to-end pipeline that ingests public aerospace supply chain data (BLS, FAA
 | Data ingestion | Python, `requests`, BLS Public Data API |
 | Data processing | `pandas` |
 | Risk scoring | Custom composite model (`src/risk/`) |
-| AI brief generation | OpenAI API (`gpt-4o`) |
+| AI brief generation | Claude API (`Sonnet 4.6`) |
 | Dashboard | Streamlit + Plotly |
 | PDF export | fpdf2 |
 | Testing | pytest |
