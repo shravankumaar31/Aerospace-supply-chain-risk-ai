@@ -1,6 +1,6 @@
 # Aerospace Supply Chain Risk AI
 
-An end-to-end pipeline that ingests public aerospace supply chain data (BLS, FAA, FRED), scores supplier and commodity risk using a composite model, and generates AI-written procurement briefs via the OpenAI API. Results are surfaced through an interactive Streamlit dashboard with Plotly visualizations.
+An end-to-end pipeline that ingests public aerospace supply chain data (BLS, FAA, FRED), scores supplier and commodity risk using a composite model, and generates AI-written procurement briefs via the Claude API. Results are surfaced through an interactive Streamlit dashboard with Plotly visualizations.
 
 ## Tech Stack
 
