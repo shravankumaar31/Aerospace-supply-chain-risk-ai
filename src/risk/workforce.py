@@ -42,7 +42,6 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 BLS_CSV = ROOT / "data" / "raw" / "bls_employment_clean.csv"
 DB_PATH = ROOT / "data" / "processed" / "supply_chain.db"
-OUT_CSV = ROOT / "data" / "processed" / "supplier_segments.csv"
 
 # BLS series → NAICS code mapping
 SERIES_TO_NAICS = {
@@ -133,28 +132,26 @@ def compute_workforce_metrics(series_df: pd.DataFrame) -> dict:
 
 
 def update_database(metrics_by_naics: dict) -> pd.DataFrame:
-    """Add/update workforce_risk_score column in supplier_segments and persist."""
-    conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql("SELECT * FROM supplier_segments", conn)
+    """
+    Add workforce_risk_score to NAICS-keyed rows in supplier_segments via
+    ALTER TABLE + UPDATE — never replaces the whole table, so other risk
+    columns added by peer scripts are preserved.
 
-    # Add column if it doesn't exist yet
-    if "workforce_risk_score" not in df.columns:
-        df["workforce_risk_score"] = None
+    336414 has no BLS series and stays NULL.
+    """
+    with sqlite3.connect(DB_PATH) as conn:
+        existing = {row[1] for row in conn.execute("PRAGMA table_info(supplier_segments)")}
+        if "workforce_risk_score" not in existing:
+            conn.execute("ALTER TABLE supplier_segments ADD COLUMN workforce_risk_score REAL")
 
-    # Write scores only to NAICS-keyed rows (state IS NULL)
-    for naics, m in metrics_by_naics.items():
-        mask = df["naics_code"] == naics
-        df.loc[mask, "workforce_risk_score"] = m["workforce_risk_score"]
-    # 336414 has no BLS series → score stays None (already None)
+        conn.execute("UPDATE supplier_segments SET workforce_risk_score = NULL")
+        conn.executemany(
+            "UPDATE supplier_segments SET workforce_risk_score = ? "
+            "WHERE CAST(naics_code AS INTEGER) = CAST(? AS INTEGER) AND state IS NULL",
+            [(m["workforce_risk_score"], naics) for naics, m in metrics_by_naics.items()],
+        )
 
-    # Persist to SQLite
-    df.to_sql("supplier_segments", conn, if_exists="replace", index=False)
-    conn.close()
-
-    # Persist to CSV
-    df.to_csv(OUT_CSV, index=False)
-
-    return df
+        return pd.read_sql("SELECT * FROM supplier_segments", conn)
 
 
 def print_results(metrics_by_naics: dict) -> None:
@@ -207,7 +204,6 @@ def main():
     # Report
     print_results(metrics_by_naics)
     print(f"Updated: {DB_PATH}")
-    print(f"Updated: {OUT_CSV}")
 
 
 if __name__ == "__main__":

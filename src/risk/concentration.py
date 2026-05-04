@@ -18,7 +18,6 @@ import pandas as pd
 
 DB_PATH = "data/processed/supply_chain.db"
 CSV_INPUT = "data/raw/usaspending_clean.csv"
-CSV_OUTPUT = "data/processed/supplier_segments.csv"
 
 HHI_HIGH = 2500
 HHI_MODERATE = 1500
@@ -83,58 +82,41 @@ def _classify(score: float) -> str:
 
 def update_db(hhi: pd.DataFrame, db_path: str) -> pd.DataFrame:
     """
-    Merge hhi_score and concentration_risk_label onto state-keyed rows in
-    supplier_segments, then write the full updated table back to SQLite.
-
-    - State-keyed rows  → get computed HHI score and risk label.
-    - NAICS-keyed rows  → hhi_score=None, concentration_risk_label="N/A"
-      (HHI is a state-level metric; setting "N/A" explicitly prevents
-      downstream scorers from crashing on null label values).
-
-    Returns the full updated DataFrame.
+    Add hhi_score and concentration_risk_label to supplier_segments via
+    ALTER TABLE + UPDATE — never replaces the whole table, so other risk
+    columns added by peer scripts are preserved.
     """
     with sqlite3.connect(db_path) as conn:
-        segments = pd.read_sql("SELECT * FROM supplier_segments", conn)
+        existing = {row[1] for row in conn.execute("PRAGMA table_info(supplier_segments)")}
+        if "hhi_score" not in existing:
+            conn.execute("ALTER TABLE supplier_segments ADD COLUMN hhi_score REAL")
+        if "concentration_risk_label" not in existing:
+            conn.execute("ALTER TABLE supplier_segments ADD COLUMN concentration_risk_label TEXT")
 
-        state_mask = segments["naics_code"].isna() & segments["state"].notna()
-
-        # State rows: drop stale risk columns then left-join fresh HHI scores
-        state_rows = (
-            segments[state_mask]
-            .drop(columns=["hhi_score", "concentration_risk_label"], errors="ignore")
-            .copy()
-            .merge(
-                hhi[["state", "hhi_score", "concentration_risk_label"]],
-                on="state",
-                how="left",
-            )
+        # NAICS rows: HHI is not applicable at the product-category level
+        conn.execute(
+            "UPDATE supplier_segments "
+            "SET hhi_score = NULL, concentration_risk_label = 'N/A' "
+            "WHERE naics_code IS NOT NULL"
+        )
+        # State rows default to 0 / Low (handles states with no award records)
+        conn.execute(
+            "UPDATE supplier_segments "
+            "SET hhi_score = 0.0, concentration_risk_label = 'Low' "
+            "WHERE naics_code IS NULL AND state IS NOT NULL"
+        )
+        # Overwrite with actual computed HHI values
+        conn.executemany(
+            "UPDATE supplier_segments "
+            "SET hhi_score = ?, concentration_risk_label = ? "
+            "WHERE naics_code IS NULL AND state = ?",
+            [
+                (row["hhi_score"], row["concentration_risk_label"], row["state"])
+                for _, row in hhi.iterrows()
+            ],
         )
 
-        # NAICS-keyed rows: HHI is inapplicable — fix labels explicitly
-        naics_rows = segments[~state_mask].copy()
-        naics_rows["hhi_score"] = None
-        naics_rows["concentration_risk_label"] = "N/A"
-
-        # Reconstruct in canonical column order (base cols + risk cols appended)
-        base_cols = [
-            c for c in segments.columns
-            if c not in ("hhi_score", "concentration_risk_label")
-        ]
-        final_cols = base_cols + ["hhi_score", "concentration_risk_label"]
-        updated = pd.concat(
-            [naics_rows[final_cols], state_rows[final_cols]],
-            ignore_index=True,
-        )
-
-        updated.to_sql("supplier_segments", conn, if_exists="replace", index=False)
-
-    return updated
-
-
-def update_csv(df: pd.DataFrame, path: str) -> None:
-    """Write the full updated DataFrame to CSV."""
-    df.to_csv(path, index=False)
-    print(f"  Saved {path}  ({len(df)} rows)")
+        return pd.read_sql("SELECT * FROM supplier_segments", conn)
 
 
 def print_top10(hhi: pd.DataFrame) -> None:
@@ -163,10 +145,13 @@ def main() -> None:
     updated = update_db(hhi, DB_PATH)
     print(f"  Table has {len(updated)} rows ({updated['hhi_score'].notna().sum()} with HHI scores)\n")
 
-    print(f"Updating {CSV_OUTPUT} ...")
-    update_csv(updated, CSV_OUTPUT)
-
     print_top10(hhi)
+
+    print("\n=== First 10 rows of updated supplier_segments ===")
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", 160)
+    print(updated.head(10).to_string(index=False))
+    print(f"\nTotal rows confirmed: {len(updated)}")
     print("\nDone.")
 
 

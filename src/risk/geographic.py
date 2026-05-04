@@ -160,38 +160,27 @@ def aggregate_to_naics(hs_risk: pd.DataFrame) -> pd.DataFrame:
 
 def update_db(naics_risk: pd.DataFrame, db_path: str) -> pd.DataFrame:
     """
-    Add geo_risk_score column to NAICS-keyed rows in supplier_segments.
+    Add geo_risk_score to NAICS-keyed rows in supplier_segments via
+    ALTER TABLE + UPDATE — never replaces the whole table, so other risk
+    columns added by peer scripts are preserved.
 
-    State-keyed rows receive geo_risk_score=None (geographic export risk is
-    a NAICS / product-category metric, not a per-state metric). The table is
-    written back to SQLite with if_exists='replace'.
-
-    Args:
-        naics_risk: Output of aggregate_to_naics().
-        db_path:    Path to the SQLite database file.
-
-    Returns:
-        The full updated supplier_segments DataFrame.
+    State-keyed rows receive NULL (geo risk is a NAICS-level metric).
     """
     score_map = naics_risk.set_index("naics_code")["geo_risk_score"]
 
-    with sqlite3.connect(db_path) as conn:
-        segments = pd.read_sql("SELECT * FROM supplier_segments", conn)
+    with sqlite3.connect(str(db_path)) as conn:
+        existing = {row[1] for row in conn.execute("PRAGMA table_info(supplier_segments)")}
+        if "geo_risk_score" not in existing:
+            conn.execute("ALTER TABLE supplier_segments ADD COLUMN geo_risk_score REAL")
 
-        # Drop stale column to ensure a clean overwrite on re-runs
-        if "geo_risk_score" in segments.columns:
-            segments = segments.drop(columns=["geo_risk_score"])
-
-        # Only NAICS-keyed rows get a geographic score
-        naics_mask = segments["naics_code"].notna()
-        segments["geo_risk_score"] = None
-        segments.loc[naics_mask, "geo_risk_score"] = (
-            segments.loc[naics_mask, "naics_code"].map(score_map)
+        conn.execute("UPDATE supplier_segments SET geo_risk_score = NULL")
+        conn.executemany(
+            "UPDATE supplier_segments SET geo_risk_score = ? "
+            "WHERE CAST(naics_code AS INTEGER) = CAST(? AS INTEGER) AND state IS NULL",
+            [(score, naics) for naics, score in score_map.items()],
         )
 
-        segments.to_sql("supplier_segments", conn, if_exists="replace", index=False)
-
-    return segments
+        return pd.read_sql("SELECT * FROM supplier_segments", conn)
 
 
 # ---------------------------------------------------------------------------
@@ -223,11 +212,6 @@ def main() -> None:
     updated = update_db(naics_risk, DB_PATH)
     geo_count = updated["geo_risk_score"].notna().sum()
     print(f"  Table: {len(updated)} rows, {geo_count} with geo_risk_score\n")
-
-    # Save CSV
-    print(f"Saving {CSV_PATH} ...")
-    updated.to_csv(CSV_PATH, index=False)
-    print(f"  Saved {len(updated)} rows\n")
 
     # Print results table
     header = f"{'NAICS':<8}  {'Label':<48}  {'Top Country':<25}  {'Share%':>7}  {'Countries':>9}  {'GeoRisk':>7}"

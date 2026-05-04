@@ -227,10 +227,16 @@ def build_unified_table(
     merged["concentration_risk_label"] = None
     merged.loc[naics_mask, "concentration_risk_label"] = "N/A"
 
+    # Fix 1: label each row by its key dimension
+    merged["row_type"] = None
+    merged.loc[naics_mask, "row_type"] = "NAICS"
+    merged.loc[merged["naics_code"].isna() & merged["state"].notna(), "row_type"] = "STATE"
+
     final_cols = [
         "naics_code",
         "naics_label",
         "state",
+        "row_type",
         "total_contract_value",
         "recipient_count",
         "export_value",
@@ -261,6 +267,7 @@ def _pad_missing_states(df: pd.DataFrame) -> pd.DataFrame:
         "naics_code": None,
         "naics_label": None,
         "state": missing,
+        "row_type": "STATE",
         "total_contract_value": 0.0,
         "recipient_count": 0,
         "export_value": None,
@@ -276,6 +283,51 @@ def _pad_missing_states(df: pd.DataFrame) -> pd.DataFrame:
 # Write outputs
 # ---------------------------------------------------------------------------
 
+FINAL_COL_ORDER: list[str] = [
+    "row_type", "naics_code", "naics_label", "state",
+    "total_contract_value", "recipient_count", "export_value",
+    "employment_count", "hhi_score", "concentration_risk_label",
+    "geo_risk_score", "workforce_risk_score",
+]
+
+_FLOAT_COLS: list[str] = [
+    "total_contract_value", "export_value", "hhi_score",
+    "geo_risk_score", "workforce_risk_score",
+]
+
+
+def export_final_csv() -> pd.DataFrame:
+    """
+    Read the fully-scored supplier_segments table from SQLite, reorder columns
+    to the canonical 12-column schema, round floats to 2 dp, replace NaN with
+    empty string, and write the definitive CSV.
+
+    This is the only function that should produce supplier_segments.csv after
+    risk scripts have run. The risk scripts (concentration, geographic,
+    workforce) must not write the CSV themselves.
+    """
+    with sqlite3.connect(DB_PATH) as conn:
+        df = pd.read_sql("SELECT * FROM supplier_segments", conn)
+
+    for col in FINAL_COL_ORDER:
+        if col not in df.columns:
+            df[col] = None
+
+    df = df[FINAL_COL_ORDER]
+
+    for col in _FLOAT_COLS:
+        df[col] = pd.to_numeric(df[col], errors="coerce").round(2)
+
+    df = df.where(df.notna(), other="")
+    df.to_csv(CSV_PATH, index=False)
+    print(f"  Saved {CSV_PATH}  ({len(df)} rows, {len(df.columns)} columns)")
+    return df
+
+
+def _clean_nulls(df: pd.DataFrame) -> pd.DataFrame:
+    """Fix 3: replace every NaN/NA value with None so CSV cells are empty string."""
+    return df.where(df.notna(), other=None)
+
 
 def write_sqlite(df: pd.DataFrame) -> None:
     """Write the unified dataframe to the supplier_segments table in SQLite."""
@@ -288,10 +340,10 @@ def print_summary(df: pd.DataFrame) -> None:
     print("\n=== supplier_segments schema ===")
     print(df.dtypes.to_string())
 
-    print("\n=== First 5 rows ===")
+    print("\n=== First 10 rows ===")
     pd.set_option("display.max_columns", None)
-    pd.set_option("display.width", 120)
-    print(df.head(5).to_string(index=False))
+    pd.set_option("display.width", 160)
+    print(df.head(10).to_string(index=False))
 
     state_mask = df["naics_code"].isna() & df["state"].notna()
     naics_mask = df["naics_code"].notna()
@@ -333,6 +385,7 @@ def main() -> None:
     unified = _pad_missing_states(unified)
 
     print("Writing outputs...")
+    unified = _clean_nulls(unified)
     write_sqlite(unified)
     unified.to_csv(CSV_PATH, index=False)
 
