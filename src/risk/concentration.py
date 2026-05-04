@@ -83,56 +83,51 @@ def _classify(score: float) -> str:
 
 def update_db(hhi: pd.DataFrame, db_path: str) -> pd.DataFrame:
     """
-    Add hhi_score and concentration_risk_label columns to the state-keyed rows
-    in supplier_segments, then write the updated table back to SQLite.
+    Merge hhi_score and concentration_risk_label onto state-keyed rows in
+    supplier_segments, then write the full updated table back to SQLite.
+
+    - State-keyed rows  → get computed HHI score and risk label.
+    - NAICS-keyed rows  → hhi_score=None, concentration_risk_label="N/A"
+      (HHI is a state-level metric; setting "N/A" explicitly prevents
+      downstream scorers from crashing on null label values).
 
     Returns the full updated DataFrame.
     """
-    conn = sqlite3.connect(db_path)
+    with sqlite3.connect(db_path) as conn:
+        segments = pd.read_sql("SELECT * FROM supplier_segments", conn)
 
-    segments = pd.read_sql("SELECT * FROM supplier_segments", conn)
+        state_mask = segments["naics_code"].isna() & segments["state"].notna()
 
-    # Add columns if they don't exist yet (idempotent re-runs)
-    for col, dtype in [("hhi_score", "REAL"), ("concentration_risk_label", "TEXT")]:
-        existing = [
-            r[1]
-            for r in conn.execute("PRAGMA table_info(supplier_segments)").fetchall()
+        # State rows: drop stale risk columns then left-join fresh HHI scores
+        state_rows = (
+            segments[state_mask]
+            .drop(columns=["hhi_score", "concentration_risk_label"], errors="ignore")
+            .copy()
+            .merge(
+                hhi[["state", "hhi_score", "concentration_risk_label"]],
+                on="state",
+                how="left",
+            )
+        )
+
+        # NAICS-keyed rows: HHI is inapplicable — fix labels explicitly
+        naics_rows = segments[~state_mask].copy()
+        naics_rows["hhi_score"] = None
+        naics_rows["concentration_risk_label"] = "N/A"
+
+        # Reconstruct in canonical column order (base cols + risk cols appended)
+        base_cols = [
+            c for c in segments.columns
+            if c not in ("hhi_score", "concentration_risk_label")
         ]
-        if col not in existing:
-            conn.execute(f"ALTER TABLE supplier_segments ADD COLUMN {col} {dtype}")
-            conn.commit()
+        final_cols = base_cols + ["hhi_score", "concentration_risk_label"]
+        updated = pd.concat(
+            [naics_rows[final_cols], state_rows[final_cols]],
+            ignore_index=True,
+        )
 
-    # Merge HHI scores onto state-keyed rows only
-    state_mask = segments["naics_code"].isna() & segments["state"].notna()
-    state_rows = segments[state_mask].copy()
-    state_rows = state_rows.merge(
-        hhi[["state", "hhi_score", "concentration_risk_label"]],
-        on="state",
-        how="left",
-        suffixes=("_old", ""),
-    )
+        updated.to_sql("supplier_segments", conn, if_exists="replace", index=False)
 
-    # Drop stale columns from a previous run if present
-    for col in ["hhi_score_old", "concentration_risk_label_old"]:
-        if col in state_rows.columns:
-            state_rows = state_rows.drop(columns=[col])
-
-    # Reconstruct the full table (NAICS rows untouched, state rows updated)
-    naics_rows = segments[~state_mask].copy()
-    # Ensure columns align
-    for col in ["hhi_score", "concentration_risk_label"]:
-        if col not in naics_rows.columns:
-            naics_rows[col] = None
-
-    updated = pd.concat(
-        [naics_rows, state_rows[segments.columns.tolist() + ["hhi_score", "concentration_risk_label"]]],
-        ignore_index=True,
-    )
-
-    # Overwrite the table
-    updated.to_sql("supplier_segments", conn, if_exists="replace", index=False)
-    conn.commit()
-    conn.close()
     return updated
 
 

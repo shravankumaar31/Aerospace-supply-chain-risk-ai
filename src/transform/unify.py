@@ -2,6 +2,14 @@
 unify.py — Day 5 of 21: Aerospace Supply Chain Risk AI
 Merges three cleaned data sources into a unified supplier_segments table and writes
 it to both SQLite (data/processed/supply_chain.db) and CSV.
+
+Day 7 quality fixes:
+  1. Drop orphan rows with both null naics_code and null state (the 280-row
+     null-state aggregate from USASpending that collapsed into a single blank row).
+  2. Pad any of the 50 US states absent from supplier_segments with zero-value rows
+     so the choropleth on Day 16 has complete geographic coverage.
+  3. Pre-populate hhi_score=None / concentration_risk_label="N/A" on NAICS-keyed
+     rows so downstream risk scorers never crash on unexpected nulls.
 """
 
 import sqlite3
@@ -47,6 +55,15 @@ SERIES_TO_NAICS: dict[str, str] = {
     "CEU3133641201": "336412",
     "CEU3133641301": "336413",
 }
+
+# All 50 US states required for choropleth coverage (Fix 2)
+US_50_STATES: list[str] = [
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+    "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+    "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+    "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+    "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+]
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -125,7 +142,6 @@ def load_census_trade() -> pd.DataFrame:
         df.groupby("naics_code")["export_value"]
         .sum()
         .reset_index()
-        .rename(columns={"export_value": "export_value"})
     )
 
     return aggregated
@@ -180,20 +196,37 @@ def build_unified_table(
       contract totals even when NAICS is unavailable upstream.
     - naics_label is derived from NAICS_LABELS; rows with unrecognised or null
       naics_code receive a null label.
+
+    Day 7 quality fixes applied here:
+    - Fix 1: orphan rows (null naics_code AND null state) are dropped.
+    - Fix 3: hhi_score and concentration_risk_label are initialised so
+      downstream scorers never see unexpected nulls; NAICS-keyed rows use
+      "N/A" for the label because HHI is a state-level metric only.
     """
     # Start from usaspending as the spine (preserves state dimension)
     merged = usaspending.copy()
 
-    # Left-join census export_value on naics_code
+    # Outer-join census export_value on naics_code
     merged = merged.merge(census, on="naics_code", how="outer")
 
-    # Left-join BLS employment_count on naics_code
+    # Outer-join BLS employment_count on naics_code
     merged = merged.merge(bls, on="naics_code", how="outer")
 
     # Attach human-readable NAICS label
     merged["naics_label"] = merged["naics_code"].map(NAICS_LABELS)
 
-    # Enforce canonical column order
+    # Fix 1: the USASpending aggregation produces one row with naics_code=null
+    # AND state=null (the 280 awards with no state recorded). Drop it — it adds
+    # no geographic or sector information.
+    merged = merged.dropna(subset=["naics_code", "state"], how="all")
+
+    # Fix 3: initialise risk columns; NAICS-keyed rows can never have an HHI
+    # score (HHI is computed from state-level award distributions, not NAICS).
+    naics_mask = merged["naics_code"].notna()
+    merged["hhi_score"] = None
+    merged["concentration_risk_label"] = None
+    merged.loc[naics_mask, "concentration_risk_label"] = "N/A"
+
     final_cols = [
         "naics_code",
         "naics_label",
@@ -202,8 +235,41 @@ def build_unified_table(
         "recipient_count",
         "export_value",
         "employment_count",
+        "hhi_score",
+        "concentration_risk_label",
     ]
     return merged[final_cols].reset_index(drop=True)
+
+
+def _pad_missing_states(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Fix 2: insert zero-value state rows for each of the 50 US states that
+    does not already appear in the table so the choropleth on Day 16 has
+    complete geographic coverage.
+
+    Zero rows use total_contract_value=0 and recipient_count=0; all other
+    numeric columns are left null so they don't distort aggregations.
+    """
+    state_keyed = df[df["naics_code"].isna() & df["state"].notna()]
+    present = set(state_keyed["state"].dropna())
+    missing = [s for s in US_50_STATES if s not in present]
+
+    if not missing:
+        return df
+
+    zero_rows = pd.DataFrame({
+        "naics_code": None,
+        "naics_label": None,
+        "state": missing,
+        "total_contract_value": 0.0,
+        "recipient_count": 0,
+        "export_value": None,
+        "employment_count": None,
+        "hhi_score": None,
+        "concentration_risk_label": None,
+    })
+
+    return pd.concat([df, zero_rows], ignore_index=True)
 
 
 # ---------------------------------------------------------------------------
@@ -218,7 +284,7 @@ def write_sqlite(df: pd.DataFrame) -> None:
 
 
 def print_summary(df: pd.DataFrame) -> None:
-    """Print schema and first 5 rows of the unified table."""
+    """Print schema, row counts, and coverage checks for the unified table."""
     print("\n=== supplier_segments schema ===")
     print(df.dtypes.to_string())
 
@@ -227,9 +293,18 @@ def print_summary(df: pd.DataFrame) -> None:
     pd.set_option("display.width", 120)
     print(df.head(5).to_string(index=False))
 
-    print(f"\nTotal rows: {len(df)}")
-    print(f"SQLite:     {DB_PATH}")
-    print(f"CSV:        {CSV_PATH}")
+    state_mask = df["naics_code"].isna() & df["state"].notna()
+    naics_mask = df["naics_code"].notna()
+    orphan_mask = df["naics_code"].isna() & df["state"].isna()
+    missing50 = sorted(set(US_50_STATES) - set(df[state_mask]["state"].dropna()))
+
+    print(f"\nTotal rows:           {len(df)}")
+    print(f"  NAICS-keyed rows:   {naics_mask.sum()}")
+    print(f"  State-keyed rows:   {state_mask.sum()}")
+    print(f"  Orphan rows:        {orphan_mask.sum()}  ← should be 0")
+    print(f"  Missing from 50:    {missing50}  ← should be []")
+    print(f"SQLite:               {DB_PATH}")
+    print(f"CSV:                  {CSV_PATH}")
 
 
 # ---------------------------------------------------------------------------
@@ -253,6 +328,9 @@ def main() -> None:
 
     print("\nBuilding unified table...")
     unified = build_unified_table(usaspending, census, bls)
+
+    print("Padding missing state rows...")
+    unified = _pad_missing_states(unified)
 
     print("Writing outputs...")
     write_sqlite(unified)
