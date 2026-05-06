@@ -1,5 +1,6 @@
 """
 unify.py — Day 5 of 21: Aerospace Supply Chain Risk AI
+
 Merges three cleaned data sources into a unified supplier_segments table and writes
 it to both SQLite (data/processed/supply_chain.db) and CSV.
 
@@ -11,6 +12,8 @@ Day 7 quality fixes:
   3. Pre-populate hhi_score=None / concentration_risk_label="N/A" on NAICS-keyed
      rows so downstream risk scorers never crash on unexpected nulls.
 """
+
+from __future__ import annotations
 
 import sqlite3
 from pathlib import Path
@@ -288,18 +291,19 @@ FINAL_COL_ORDER: list[str] = [
     "total_contract_value", "recipient_count", "export_value",
     "employment_count", "hhi_score", "concentration_risk_label",
     "geo_risk_score", "workforce_risk_score",
+    "composite_risk_score", "risk_tier",
 ]
 
 _FLOAT_COLS: list[str] = [
     "total_contract_value", "export_value", "hhi_score",
-    "geo_risk_score", "workforce_risk_score",
+    "geo_risk_score", "workforce_risk_score", "composite_risk_score",
 ]
 
 
 def export_final_csv() -> pd.DataFrame:
     """
     Read the fully-scored supplier_segments table from SQLite, reorder columns
-    to the canonical 12-column schema, round floats to 2 dp, replace NaN with
+    to the canonical 14-column schema, round floats to 2 dp, replace NaN with
     empty string, and write the definitive CSV.
 
     This is the only function that should produce supplier_segments.csv after
