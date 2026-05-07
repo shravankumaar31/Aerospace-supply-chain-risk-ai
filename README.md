@@ -28,6 +28,26 @@ visible.
 
 ## Architecture
 
+**Data Sources → Ingestion → Unification → Risk Scoring → AI Briefs → Dashboard**
+
+1. **Ingest** — Three scripts pull from public APIs:
+   - `src/ingest/usaspending.py` → USASpending.gov contract awards
+   - `src/ingest/census_trade.py` → Census Bureau trade data  
+   - `src/ingest/bls_employment.py` → BLS employment data
+
+2. **Unify** — `src/transform/unify.py` merges all sources into SQLite (`data/processed/supply_chain.db`)
+
+3. **Score** — Three independent risk modules:
+   - `src/risk/concentration.py` → HHI per state
+   - `src/risk/geographic.py` → Export dependency per NAICS
+   - `src/risk/workforce.py` → Employment volatility per NAICS
+
+4. **Composite** — `src/risk/composite.py` combines all scores into `composite_risk_score` + `risk_tier`
+
+5. **Brief** — `src/ai/brief_generator.py` sends risk data to Claude API → returns analyst-style procurement brief
+
+6. **Dashboard** — `src/app/app.py` Streamlit app with Plotly choropleth map and AI brief panel
+
 ---
 
 ## Tech Stack
@@ -129,20 +149,17 @@ streamlit run src/app/app.py
 
 ## Project Structure
 
-aerospace-supply-chain-risk-ai/
-├── src/
-│   ├── ingest/          # Data ingestion scripts
-│   ├── transform/       # Unification and pipeline runner
-│   ├── risk/            # Risk scoring modules
-│   ├── ai/              # Claude API brief generator
-│   └── app/             # Streamlit dashboard
-├── data/
-│   ├── raw/             # Raw API responses (gitignored)
-│   └── processed/       # SQLite DB and final CSV
-├── tests/               # pytest suite (8 tests, all passing)
-├── notebooks/           # EDA notebook
-├── outputs/             # Charts and AI-generated briefs
-└── .github/workflows/   # GitHub Actions pipeline
+- `src/ingest/` — Data ingestion scripts (USASpending, Census, BLS)
+- `src/transform/` — Data unification and pipeline runner
+- `src/risk/` — Risk scoring modules (concentration, geographic, workforce, composite)
+- `src/ai/` — Claude API brief generator
+- `src/app/` — Streamlit dashboard
+- `data/raw/` — Raw API responses (gitignored)
+- `data/processed/` — SQLite database and final CSV
+- `tests/` — pytest suite (8 tests, all passing)
+- `notebooks/` — EDA notebook
+- `outputs/` — Charts and AI-generated briefs
+- `.github/workflows/` — GitHub Actions pipeline
 
 ---
 
