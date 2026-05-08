@@ -1,0 +1,25 @@
+# Risk Brief: NAICS 336411 — Aircraft Manufacturing
+
+## Executive Summary
+
+Aircraft Manufacturing (NAICS 336411) presents a **Medium** composite risk profile (46.43/100), with the primary vulnerability stemming from elevated geographic concentration (60.42/100) indicating significant clustering exposure. The segment maintains substantial scale with 240,989 employees and $10.0B in export value, but localized production dependencies create supply chain fragility.
+
+## Risk Drivers
+
+- **Geographic concentration risk scores 60.42/100**, signaling that aircraft manufacturing capacity is heavily clustered in specific regions, creating exposure to localized disruptions (natural disasters, labor actions, infrastructure failures).
+
+- **Workforce availability risk remains moderate at 32.44/100** despite employing 240,989 workers, suggesting relative stability in talent pipelines but potential tightness in specialized aerospace trades.
+
+- **Export dependency reaches $10.0B**, making this segment critical to U.S. trade balance and vulnerable to international demand shocks, export control changes, or foreign competitor actions.
+
+## Market Context
+
+Aircraft Manufacturing represents a cornerstone of the U.S. aerospace industrial base, with its 240,989-person workforce reflecting deep integration of engineering, production, and certification capabilities. The 60.42 geographic risk score aligns with known industry clustering in the Pacific Northwest, Southern California, and select Sunbelt states—a legacy of Cold War-era production siting and supply chain gravity around Boeing and legacy OEMs. This concentration historically enabled knowledge transfer and supplier proximity but now amplifies single-point-of-failure risk. The segment's $10.0B export footprint underscores its role in offsetting U.S. trade deficits while exposing it to geopolitical and currency volatility.
+
+## Recommended Actions
+
+- **Procurement directors should map Tier-1 aircraft manufacturers to specific MSAs** and conduct scenario planning for 72-hour disruptions in the top three concentration zones, prioritizing alternate sourcing for long-lead structural components.
+
+- **Program managers must engage HR and workforce development teams** to stress-test hiring plans against the 32.44 workforce risk score, particularly for FAA-certified mechanics and composite fabrication specialists.
+
+- **Supply chain leadership should establish quarterly export monitoring** tied to the $10.0B baseline, with trigger points for customer diversification if any single export market exceeds 30% of segment revenue.

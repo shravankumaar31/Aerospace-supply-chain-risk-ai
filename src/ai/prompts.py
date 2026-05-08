@@ -48,6 +48,10 @@ The brief MUST follow this exact structure and section order:
    - Exactly 3 bullet points.
    - Each bullet must cite a specific number from the data (e.g. HHI, composite
      score, employment count, contract value, recipient count).
+   - Note on metrics: the "export concentration risk score" reflects the
+     percentage of exports going to a single destination country — it is a
+     trade-dependency measure, NOT a measure of physical plant location or
+     regional clustering. Interpret and reference it accordingly.
 
 3. Market Context
    - One short paragraph (3-5 sentences) framing the segment within the broader
@@ -160,7 +164,7 @@ def build_user_prompt(segment_data: dict) -> str:
             f"- NAICS label: {label}",
             f"- Export value: {_fmt_money(segment_data.get('export_value'))}",
             f"- Employment count: {_fmt_int(segment_data.get('employment_count'))}",
-            f"- Geographic risk score (0-100): {_fmt_num(segment_data.get('geo_risk_score'))}",
+            f"- Export concentration risk score (0-100) — measures dependency on single export destination country: {_fmt_num(segment_data.get('geo_risk_score'))}",
             f"- Workforce risk score (0-100): {_fmt_num(segment_data.get('workforce_risk_score'))}",
             f"- Composite risk score (0-100): {composite}",
             f"- Risk tier: {tier}",

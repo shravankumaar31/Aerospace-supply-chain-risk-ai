@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: WISCONSIN AEROSPACE SEGMENT
+
+## Executive Summary
+
+Wisconsin's aerospace supplier base presents extreme concentration risk with a composite score of 100.00 driven by a monopolistic market structure. The segment's HHI of 10,000 indicates single-supplier dominance controlling $7.3M in federal contracts across only 2 total recipients.
+
+## Risk Drivers
+
+- **Complete market concentration**: HHI score of 10,000 represents maximum possible concentration, indicating one supplier holds 100% market share within this segment's contract portfolio—eliminating competitive alternatives and price discovery mechanisms.
+
+- **Minimal supplier base depth**: Only 2 recipients capture the entire $7.3M contract value, providing zero redundancy for production disruptions, quality escapes, or financial distress events.
+
+- **High-tier risk classification**: Composite risk score of 100.00 places Wisconsin in the highest risk tier, signaling acute vulnerability to single points of failure across technical capability, capacity, and business continuity dimensions.
+
+## Market Context
+
+Wisconsin's aerospace footprint reflects broader Midwest industrial base challenges: limited supplier diversity in a region historically dependent on legacy manufacturing and defense electronics. With $7.3M in contract value split between just 2 entities, the state lacks the multi-tier supplier ecosystem found in traditional aerospace clusters (California, Texas, Washington). This thin industrial base increases exposure to workforce aging and skills gap issues affecting Rust Belt states, while offering minimal buffer against disruptions. The perfect HHI score suggests either a niche technical capability with sole-source positioning or recent consolidation that eliminated competitive alternatives—both scenarios amplifying supply chain brittleness for primes dependent on Wisconsin output.
+
+## Recommended Actions
+
+- **Initiate dual-source qualification**: Program managers must identify and fund qualification of at least one alternative supplier outside Wisconsin for critical components, accepting near-term NRE costs to break monopolistic dependency.
+
+- **Conduct financial health assessment**: Procurement should immediately audit the dominant supplier's financial statements, backlog stability, and ownership structure given single-point-of-failure exposure on $7.3M in obligations.
+
+- **Develop contingency playbook**: Supply chain risk teams must pre-position alternative sourcing strategies, including out-of-state suppliers or in-house manufacturing options, with trigger criteria for activation based on delivery, quality, or solvency indicators.
