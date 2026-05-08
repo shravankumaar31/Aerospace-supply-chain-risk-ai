@@ -2,24 +2,24 @@
 
 ## Executive Summary
 
-Aircraft Manufacturing (NAICS 336411) presents a **Medium** composite risk profile (46.43/100), with the primary vulnerability stemming from elevated geographic concentration (60.42/100) indicating significant clustering exposure. The segment maintains substantial scale with 240,989 employees and $10.0B in export value, but localized production dependencies create supply chain fragility.
+Aircraft Manufacturing presents a **Medium** composite risk (46.43/100), driven primarily by elevated export concentration to a single destination country. With 240,989 workers supporting over $10 billion in annual exports, this segment warrants active monitoring despite moderate overall workforce stability.
 
 ## Risk Drivers
 
-- **Geographic concentration risk scores 60.42/100**, signaling that aircraft manufacturing capacity is heavily clustered in specific regions, creating exposure to localized disruptions (natural disasters, labor actions, infrastructure failures).
+- **Export destination dependency**: The 60.42/100 concentration risk score indicates that approximately 60% of the segment's $10.0 billion in exports flow to a single destination country, creating significant trade policy and geopolitical exposure.
 
-- **Workforce availability risk remains moderate at 32.44/100** despite employing 240,989 workers, suggesting relative stability in talent pipelines but potential tightness in specialized aerospace trades.
+- **Workforce stability buffer**: The 32.44/100 workforce risk score suggests moderate resilience in labor availability and retention, mitigating near-term production continuity concerns across the 240,989-person employment base.
 
-- **Export dependency reaches $10.0B**, making this segment critical to U.S. trade balance and vulnerable to international demand shocks, export control changes, or foreign competitor actions.
+- **Composite risk positioning**: At 46.43/100, the segment falls at the upper end of Medium tier, positioning it within 4 points of High-tier classification and indicating vulnerability to single-shock escalation.
 
 ## Market Context
 
-Aircraft Manufacturing represents a cornerstone of the U.S. aerospace industrial base, with its 240,989-person workforce reflecting deep integration of engineering, production, and certification capabilities. The 60.42 geographic risk score aligns with known industry clustering in the Pacific Northwest, Southern California, and select Sunbelt states—a legacy of Cold War-era production siting and supply chain gravity around Boeing and legacy OEMs. This concentration historically enabled knowledge transfer and supplier proximity but now amplifies single-point-of-failure risk. The segment's $10.0B export footprint underscores its role in offsetting U.S. trade deficits while exposing it to geopolitical and currency volatility.
+Aircraft Manufacturing forms the apex of U.S. aerospace supply chains, delivering finished platforms to domestic military and commercial customers as well as allied nations. The segment's $10 billion export volume reflects the strategic importance of foreign military sales and international airline deliveries. However, the 60% concentration to one destination country — likely a major NATO ally or Asia-Pacific partner — introduces trade corridor fragility uncommon in other aerospace tiers. While the workforce risk remains moderate, the segment's scale (241,000 employees) means even small disruptions cascade rapidly through lower-tier suppliers. Regional clustering around historic airframe manufacturing hubs compounds exposure.
 
 ## Recommended Actions
 
-- **Procurement directors should map Tier-1 aircraft manufacturers to specific MSAs** and conduct scenario planning for 72-hour disruptions in the top three concentration zones, prioritizing alternate sourcing for long-lead structural components.
+- **Procurement teams** should conduct trade flow audits on sole-source aircraft contracts to quantify exposure to the dominant export destination and develop alternative delivery pathways or contract structures resilient to trade disruptions.
 
-- **Program managers must engage HR and workforce development teams** to stress-test hiring plans against the 32.44 workforce risk score, particularly for FAA-certified mechanics and composite fabrication specialists.
+- **Program managers** must map subassembly sourcing for platforms destined to the primary export market, identifying critical path components vulnerable to re-export restrictions or tariff escalation.
 
-- **Supply chain leadership should establish quarterly export monitoring** tied to the $10.0B baseline, with trigger points for customer diversification if any single export market exceeds 30% of segment revenue.
+- **Supply chain directors** should establish quarterly export diversity tracking, triggering contingency reviews if concentration exceeds 65% or if the primary destination signals policy changes affecting defense articles or dual-use technologies.

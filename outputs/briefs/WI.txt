@@ -2,24 +2,24 @@
 
 ## Executive Summary
 
-Wisconsin's aerospace supplier base presents extreme concentration risk with a composite score of 100.00 driven by a monopolistic market structure. The segment's HHI of 10,000 indicates single-supplier dominance controlling $7.3M in federal contracts across only 2 total recipients.
+Wisconsin's aerospace supply base presents extreme concentration risk, with a composite score of 100.00 driven by a two-recipient oligopoly controlling $7.3M in federal contracts. The segment exhibits maximum market concentration (HHI 10,000), indicating effective single-source dependence at the state level.
 
 ## Risk Drivers
 
-- **Complete market concentration**: HHI score of 10,000 represents maximum possible concentration, indicating one supplier holds 100% market share within this segment's contract portfolio—eliminating competitive alternatives and price discovery mechanisms.
+- **Maximum market concentration**: HHI of 10,000 reflects a theoretical monopoly or duopoly structure across only 2 contract recipients, eliminating competitive alternatives within the state.
 
-- **Minimal supplier base depth**: Only 2 recipients capture the entire $7.3M contract value, providing zero redundancy for production disruptions, quality escapes, or financial distress events.
+- **Minimal contracting scale**: Total contract value of $7.3M represents negligible federal procurement activity, suggesting limited industrial depth and possible reliance on niche capabilities that cannot be easily re-sourced.
 
-- **High-tier risk classification**: Composite risk score of 100.00 places Wisconsin in the highest risk tier, signaling acute vulnerability to single points of failure across technical capability, capacity, and business continuity dimensions.
+- **Binary supplier risk**: With only 2 recipients in the database, any single supplier disruption immediately eliminates 50% of the state's visible aerospace capacity, creating step-function vulnerability for dependent programs.
 
 ## Market Context
 
-Wisconsin's aerospace footprint reflects broader Midwest industrial base challenges: limited supplier diversity in a region historically dependent on legacy manufacturing and defense electronics. With $7.3M in contract value split between just 2 entities, the state lacks the multi-tier supplier ecosystem found in traditional aerospace clusters (California, Texas, Washington). This thin industrial base increases exposure to workforce aging and skills gap issues affecting Rust Belt states, while offering minimal buffer against disruptions. The perfect HHI score suggests either a niche technical capability with sole-source positioning or recent consolidation that eliminated competitive alternatives—both scenarios amplifying supply chain brittleness for primes dependent on Wisconsin output.
+Wisconsin operates as a marginal participant in U.S. aerospace procurement, with contract volume three orders of magnitude below major production states. The two-recipient base likely reflects specialized sub-tier machining or component manufacturing rather than integrated aerospace OEM presence. This thinness is consistent with Midwest aerospace patterns where historical manufacturing infrastructure supports niche supply chains but lacks the scale of coastal aerospace clusters. The extreme HHI indicates no meaningful competition exists within state borders—programs sourcing from Wisconsin likely do so for specific technical capabilities that have not attracted redundant suppliers.
 
 ## Recommended Actions
 
-- **Initiate dual-source qualification**: Program managers must identify and fund qualification of at least one alternative supplier outside Wisconsin for critical components, accepting near-term NRE costs to break monopolistic dependency.
+- **Immediate dual-source validation**: Program managers must verify that both Wisconsin recipients are not serving the same critical programs; if so, establish qualified out-of-state alternates within 90 days.
 
-- **Conduct financial health assessment**: Procurement should immediately audit the dominant supplier's financial statements, backlog stability, and ownership structure given single-point-of-failure exposure on $7.3M in obligations.
+- **Technical data package audit**: Ensure government holds sufficient TDP rights for Wisconsin-sourced components to enable emergency re-procurement if either supplier exits, given zero in-state backup options.
 
-- **Develop contingency playbook**: Supply chain risk teams must pre-position alternative sourcing strategies, including out-of-state suppliers or in-house manufacturing options, with trigger criteria for activation based on delivery, quality, or solvency indicators.
+- **Tier-down supply chain mapping**: Procurement should trace Wisconsin recipients' own suppliers to identify hidden concentration points, as $7.3M likely represents final assembly rather than vertically integrated production.
