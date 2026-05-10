@@ -1,0 +1,25 @@
+**SUPPLIER RISK BRIEF: MISSOURI AEROSPACE SEGMENT**
+
+**EXECUTIVE SUMMARY**
+
+Missouri's aerospace supply base presents extreme concentration risk, with an HHI of 9,986 indicating near-monopoly dominance by a single prime or program. Despite $87.6 billion in total contract value across 565 recipients, the segment's composite risk score of 99.86 (out of 100) reflects critical single-source exposure that threatens continuity for dependent programs.
+
+**RISK DRIVERS**
+
+• **Extreme market concentration**: The HHI of 9,986 approaches the theoretical maximum of 10,000, signaling that one entity controls the overwhelming majority of the $87.6 billion contract base — a textbook single-point-of-failure scenario.
+
+• **High recipient count masking underlying fragility**: While 565 suppliers operate in the state, the near-maximum composite risk score of 99.86 indicates the contract value distribution is severely imbalanced, with most recipients holding marginal share.
+
+• **Substantial capital at risk**: $87.6 billion in obligated contracts concentrates significant program dollars in a segment where one disruption event could cascade across multiple weapon systems or platforms.
+
+**MARKET CONTEXT**
+
+Missouri historically anchors major defense aviation programs, particularly in tactical aircraft and military transport. The extreme HHI suggests this segment is likely dominated by a single legacy prime contractor facility rather than a diversified supplier ecosystem. This structure is common in states hosting large final assembly or modification centers, where the prime's direct contracts dwarf Tier-1 and Tier-2 subcontractor activity. While 565 recipients indicate some supply chain depth, the lopsided value distribution raises questions about second-source viability and the industrial base's ability to absorb a major facility closure, labor action, or program cancellation. The concentration also limits organic competition for future programs sited in the region.
+
+**RECOMMENDED ACTIONS**
+
+• **Conduct deep-dive mapping** of the top contract holder's subcontractor network to identify dual-source opportunities for critical subsystems and isolate non-transferable capabilities requiring contingency investment.
+
+• **Establish contract surveillance protocols** with the dominant prime, including quarterly business health reviews and early-warning tripwires for workforce attrition, supplier financial distress, or facility rationalization plans.
+
+• **Evaluate geographic diversification** for follow-on buys or modernization increments, ensuring acquisition strategies explicitly assess Missouri concentration risk during source selection and do not inadvertently deepen single-state dependency.

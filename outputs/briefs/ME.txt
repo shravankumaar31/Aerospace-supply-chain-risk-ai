@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: MAINE AEROSPACE SEGMENT
+
+## Executive Summary
+
+Maine's aerospace supplier base presents extreme concentration risk, with $2.3M in federal contracts awarded to a single recipient and an HHI score of 10,000 indicating monopolistic exposure. This segment scores 100/100 on composite risk, placing it in the highest tier across all U.S. state portfolios.
+
+## Risk Drivers
+
+- **Complete market concentration**: HHI of 10,000 reflects a single-supplier structure with zero redundancy — any disruption to this one recipient eliminates the entire state's federal aerospace capability.
+
+- **Minimal dollar exposure but total capability gap**: While contract value of $2.3M represents low absolute spend, the recipient count of 1 means no alternative sources exist within Maine for these capabilities.
+
+- **Maximum composite risk score**: At 100/100, this segment exhibits the worst possible combination of concentration, limited supplier depth, and lack of geographic diversification within the state boundaries.
+
+## Market Context
+
+Maine operates as a niche participant in the U.S. aerospace industrial base, lacking the critical mass seen in traditional hubs. Single-recipient reliance is not uncommon in smaller state aerospace ecosystems, but it creates binary risk: the capability either exists or vanishes entirely. Unlike multi-supplier states where workforce and infrastructure enable recovery, Maine has no internal buffer against prime contractor reallocation, supplier financial distress, or site closure. This profile mirrors isolated capability pockets across rural defense manufacturing regions.
+
+## Recommended Actions
+
+- **Immediate alternate sourcing**: Procurement should qualify backup suppliers in adjacent states (NH, MA) for the specific work scopes currently sole-sourced to the Maine recipient to establish redundancy before contract renewal.
+
+- **Supplier financial monitoring**: Program offices must implement quarterly financial health reviews of the single recipient, treating any early warning indicators as segment-level emergencies.
+
+- **Strategic make-vs-buy assessment**: Engineering teams should evaluate whether critical Maine-sourced components justify vertical integration or transfer to higher-capacity facilities in consolidated aerospace corridors.

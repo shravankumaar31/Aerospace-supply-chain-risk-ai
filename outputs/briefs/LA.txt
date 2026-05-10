@@ -1,0 +1,25 @@
+## Risk Brief: Louisiana Aerospace Supplier Base
+
+**1. Executive Summary**
+
+Louisiana's aerospace supply base presents extreme concentration risk, with a composite score of 98.63 driven by near-monopolistic market structure. Three recipients control $2.9 billion in contract value with an HHI of 9,863—indicating effective single-supplier dominance in critical segments.
+
+**2. Risk Drivers**
+
+- **Market concentration**: HHI of 9,863 (scale: 0–10,000) places Louisiana in near-monopoly territory, exceeding the 2,500 threshold DOJ uses to flag anticompetitive markets. This leaves minimal fallback capacity if the dominant supplier faces disruption.
+
+- **Supplier scarcity**: Only 3 recipients hold the entire $2.9B contract portfolio, creating single points of failure across multiple programs and eliminating competitive tension in negotiations.
+
+- **Tier assignment**: The 98.63 composite risk score (scale: 0–100) lands Louisiana in the "High" tier, signaling that multiple risk dimensions—concentration, dependence, and resilience gaps—compound simultaneously.
+
+**3. Market Context**
+
+Louisiana's aerospace footprint reflects a Tier-1 and prime-integrator model common in Gulf Coast states, where large incumbents anchor regional supply chains but leave few alternatives. This structure mirrors consolidation trends across the U.S. industrial base, where mergers have reduced supplier counts 40% since 2000. The three-recipient concentration suggests specialized capabilities—likely propulsion, composites, or final assembly—that require significant capital and cleared workforce. Such high-value, low-diversification profiles amplify program risk when geopolitical or financial shocks hit a single entity.
+
+**4. Recommended Actions**
+
+- **Dual-source mandate**: Require program offices with Louisiana-dependent suppliers to identify and qualify second sources or build inventory buffers equivalent to 90 days of production—mitigating the HHI-driven single-point failure.
+
+- **Supplier financial monitoring**: Establish quarterly financial health reviews for all three recipients, given their outsize influence on $2.9B in obligations and limited competitive alternatives.
+
+- **Regional diversification incentive**: Direct Small Business Innovation Research (SBIR) and Manufacturing USA funds toward developing Louisiana's sub-tier base, reducing long-term dependence on the top three entities.

@@ -1,0 +1,25 @@
+# SUPPLY CHAIN RISK BRIEF: IDAHO AEROSPACE SUPPLIERS
+
+## Executive Summary
+
+Idaho's aerospace supplier base presents maximum concentration risk with a single recipient holding 100% of $2.5M in federal contract value and an HHI of 10,000. This extreme single-point dependency creates immediate continuity vulnerability for any programs relying on Idaho-based suppliers.
+
+## Risk Drivers
+
+- **Maximum Market Concentration**: HHI of 10,000 indicates monopoly conditions, with one supplier capturing the entire $2.5M contract base in Idaho—eliminating competitive alternatives and price discovery mechanisms.
+
+- **Zero Redundancy**: A recipient count of 1 means no backup suppliers exist within the state, creating binary risk exposure where any operational disruption translates directly to program impact.
+
+- **Elevated Composite Risk**: The 100.00 composite risk score places Idaho in the High risk tier, reflecting compounded vulnerabilities across concentration, scale, and resilience dimensions.
+
+## Market Context
+
+Idaho represents a minimal footprint within the U.S. aerospace industrial base, with contract activity three orders of magnitude below major hubs. The state's single-supplier structure contrasts sharply with diversified aerospace clusters in Washington, California, and Texas, where depth of qualified vendors provides natural resilience. At $2.5M in total value, Idaho's participation suggests niche capability or sub-tier fabrication rather than critical path production. However, aerospace programs increasingly depend on geographically dispersed specialty suppliers for components ranging from precision forgings to composite layups, making even small state footprints potential choke points when alternative sources require lengthy qualification cycles.
+
+## Recommended Actions
+
+- **Immediate Source Mapping**: Procurement directors must identify which programs depend on the Idaho supplier and assess qualification timelines for geographically distinct alternates.
+
+- **Dual-Source Requirements**: Program managers should mandate second-source development for any Idaho-sourced item with lead times exceeding 90 days or designated as single-point failure risk.
+
+- **Escalation Protocols**: Supply chain teams must establish direct monitoring of the Idaho supplier's financial health, workforce stability, and production capacity with quarterly executive reviews.

@@ -1,0 +1,25 @@
+# RISK BRIEF: RHODE ISLAND AEROSPACE SUPPLIER BASE
+
+## Executive Summary
+
+Rhode Island's aerospace supplier segment presents extreme concentration risk with a composite score of 100.00 and an HHI of 10,000—indicating a single-supplier monopoly controlling $82.9M in contract value across only 4 recipients. The industrial base in this state lacks depth, redundancy, and competition, creating acute vulnerability to supplier disruption.
+
+## Risk Drivers
+
+- **Perfect market concentration**: HHI of 10,000 reflects monopolistic control, meaning one entity holds effectively all contract value within Rhode Island's aerospace supplier base, eliminating competitive alternatives and price discipline.
+
+- **Minimal recipient pool**: Only 4 contract recipients support $82.9M in obligations, producing an average contract size of $20.7M per recipient and concentrating program dependencies on a statistically insignificant supplier population.
+
+- **Maximum composite risk**: A score of 100.00 on a 0-100 scale places this segment at the ceiling of measurable supply chain risk, driven by the combination of extreme HHI and shallow recipient count.
+
+## Market Context
+
+Rhode Island represents a minor node in the U.S. aerospace industrial base, with contract activity three orders of magnitude below major production states. The monopolistic concentration likely reflects either a single large incumbent with specialized capabilities or incomplete data capture of smaller suppliers. Unlike diversified aerospace hubs in the South and West, Rhode Island's limited supplier footprint offers no competitive tension or fallback sourcing options. The state's small manufacturing workforce and declining Tier-2/Tier-3 supplier density mirror broader New England trends, where aerospace consolidation has hollowed out regional supply chains over two decades.
+
+## Recommended Actions
+
+- **Conduct single-source dependency audit**: Procurement teams must identify which programs rely on Rhode Island suppliers, assess alternative sources in adjacent states, and establish qualification timelines for second sources where none exist.
+
+- **Require business continuity disclosure**: Mandate that Rhode Island suppliers submit facility, workforce, and financial resilience plans, with particular attention to succession risk given the concentrated recipient base.
+
+- **Evaluate geographic rebalancing**: For non-sole-source commodities, shift RFP evaluations to favor suppliers in less concentrated states or regions with demonstrable competitive depth and lower composite risk scores.

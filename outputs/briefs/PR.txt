@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: PUERTO RICO AEROSPACE SEGMENT
+
+## Executive Summary
+
+Puerto Rico represents an extreme concentration risk with a composite score of 100.00 driven by complete market dominance by a single recipient holding $10.4M in contracts. This segment exhibits the highest possible HHI score (10,000.00), indicating absolute monopoly conditions with zero competitive alternatives in the current supplier base.
+
+## Risk Drivers
+
+- **Perfect market concentration**: HHI of 10,000.00 reflects a single-supplier environment with no diversification across the entire Puerto Rico aerospace base — any disruption to this one recipient immediately eliminates regional capacity.
+
+- **Minimal contract scale**: Total segment value of $10,426,056 across one recipient suggests either highly specialized low-volume work or nascent industrial participation, neither of which justifies single-source dependency.
+
+- **Zero competitive depth**: Recipient count of 1 means no alternate sources, no competitive pressure on quality or pricing, and no fallback options for surge or disruption scenarios.
+
+## Market Context
+
+Puerto Rico's aerospace footprint operates as an outlier to the continental U.S. industrial base, where even small states typically sustain multiple suppliers across complementary specialties. The $10.4M contract base is several orders of magnitude below major aerospace states and indicates either a niche technical capability or opportunistic participation rather than strategic integration. With perfect HHI concentration and single-recipient dependency, this segment lacks the redundancy and competitive dynamics standard in mainland aerospace clusters. The island's geographic separation compounds supply chain vulnerability, as transportation disruptions or natural disasters (hurricanes, infrastructure failures) directly threaten the sole source without regional alternatives to absorb workload.
+
+## Recommended Actions
+
+- **Immediate source qualification**: Program managers must identify and qualify at least one alternate supplier (mainland or Puerto Rico-based) for any capabilities currently sole-sourced to the existing recipient to mitigate perfect-concentration exposure.
+
+- **Contract value justification review**: Procurement should assess whether the specialized nature of the $10.4M workload warrants single-source risk, or if capabilities can be recompeted to mainland suppliers with stronger industrial depth.
+
+- **Contingency inventory positioning**: Supply chain operations must establish buffer stock or pre-positioned inventory for critical components from this supplier to bridge potential disruptions from geographic isolation or natural disaster events.

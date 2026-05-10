@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: NEVADA AEROSPACE SEGMENT
+
+## Executive Summary
+
+Nevada's aerospace supplier base presents severe concentration risk, with a composite score of 93.22 placing it in the high-risk tier. The segment's HHI of 9,321 indicates near-monopolistic market structure among just 25 prime recipients controlling $476M in federal contracts.
+
+## Risk Drivers
+
+• **Extreme market concentration**: HHI score of 9,321 approaches theoretical maximum (10,000), signaling that one or two suppliers dominate the state's $476M aerospace contract portfolio and creating catastrophic single-point-of-failure exposure.
+
+• **Thin supplier base**: Only 25 recipients across the entire state spread over $476M in obligations yields an average contract size of $19M per entity, suggesting limited competition depth and minimal surge capacity if a key supplier exits.
+
+• **High composite risk threshold**: At 93.22 out of 100, Nevada ranks among the most vulnerable state segments in the industrial base, indicating converging structural weaknesses beyond concentration alone.
+
+## Market Context
+
+Nevada's aerospace footprint reflects specialized niche positioning rather than broad industrial depth, typical of states without legacy prime integrator presence or diversified Tier-1 ecosystems. The 25-recipient count and extreme HHI suggest the segment likely supports specific test range operations, sustainment depots, or specialized component manufacturing rather than complete aircraft assembly. This concentration pattern mirrors challenges in other Western states where geographic isolation and limited workforce pipelines constrain supplier diversity. The thin base offers limited redundancy for critical capabilities and exposes programs to delivery risk if labor disputes, facility damage, or financial distress affect dominant players.
+
+## Recommended Actions
+
+• **Mandate dual-source strategies** for any program spending above $10M annually with Nevada suppliers, requiring procurement offices to qualify alternative sources in adjacent states before sole-source awards.
+
+• **Conduct supplier financial health audits** on the top three contract recipients (likely representing 70%+ of segment value given the HHI), focusing on capitalization, backlog stability, and key-person dependencies.
+
+• **Develop contingency exercise** with program offices to simulate sudden loss of Nevada's largest supplier and validate failover plans, including cross-qualification timelines and logistics for alternative sourcing.

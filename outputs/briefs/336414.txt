@@ -1,0 +1,25 @@
+## Risk Brief: NAICS 336414 — Guided Missile & Space Vehicle Manufacturing
+
+### Executive Summary
+
+This segment presents a **low-risk** profile (composite score: 37.98/100) for U.S. aerospace procurement, driven primarily by moderate export concentration to a single destination country. With $765.8M in annual export value and a trade dependency score of 37.98, the segment shows balanced geographic market diversification relative to peer defense manufacturing categories.
+
+### Risk Drivers
+
+• **Moderate export concentration risk (37.98/100)** indicates that approximately 38% of segment exports flow to a single destination country, creating measurable but manageable trade policy exposure compared to highly diversified sectors.
+
+• **Export value of $765.8M** represents a substantial but not dominant share of U.S. missile and space vehicle trade, suggesting sufficient scale to support competitive supplier ecosystems without over-reliance on export revenue.
+
+• **Incomplete workforce data** prevents assessment of labor availability, skills pipeline depth, and regional employment concentrations — all critical factors for long-lead hardware programs requiring specialized technical talent.
+
+### Market Context
+
+The guided missile and space vehicle manufacturing base operates within a heavily regulated, security-sensitive environment where ITAR restrictions and classified program requirements inherently limit export markets. The moderate trade concentration observed here likely reflects strategic partnerships with allied nations (Five Eyes, NATO) rather than commercial overdependence. However, the segment faces secular pressures common across U.S. aerospace: ongoing prime-tier consolidation, aging workforce demographics in propulsion and structural assembly trades, and capital intensity that favors established incumbents. The absence of employment data limits visibility into regional vulnerability clusters (e.g., Southern California, Huntsville, Cape Canaveral corridor) where facility closures could cascade through lower-tier machining and integration suppliers.
+
+### Recommended Actions
+
+• **Procurement teams** should map the top three export destination countries for this segment to assess tariff, sanctions, or foreign policy risks that could disrupt $290M+ in concentrated trade flows.
+
+• **Supply chain resilience offices** must secure workforce data for this NAICS code through direct supplier surveys or BLS partnerships to identify skills gaps and geographic bottlenecks before they impact delivery schedules.
+
+• **Program managers** on multi-year development contracts should require key suppliers in this segment to maintain qualified alternate production lines or technology transfer agreements to mitigate single-destination export shocks.

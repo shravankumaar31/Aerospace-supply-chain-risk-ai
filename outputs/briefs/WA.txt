@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: WASHINGTON STATE
+
+## Executive Summary
+
+Washington state represents an extreme concentration risk in aerospace procurement, with a composite risk score of 98.44 out of 100 and an HHI of 9,844—indicating near-monopolistic supplier concentration. The $86.0 billion contract base across only 161 recipients creates single-point failure exposure that threatens program continuity across multiple defense platforms.
+
+## Risk Drivers
+
+- **Market dominance concentration**: The HHI of 9,844 (maximum = 10,000) signals that one or two suppliers command the overwhelming majority of the $86.0 billion contract portfolio, creating vulnerability to production disruptions, labor actions, or financial distress at a single entity.
+
+- **Limited supplier redundancy**: Only 161 contract recipients support $86.0 billion in obligations—an average of $534 million per recipient—indicating a shallow vendor pool with minimal alternate sourcing options for critical aerospace components and assemblies.
+
+- **Maximum-tier risk exposure**: The composite risk score of 98.44 places Washington in the highest observable risk category, reflecting compounded vulnerabilities from both extreme concentration and the scale of financial exposure across defense aerospace programs.
+
+## Market Context
+
+Washington's aerospace industrial base is anchored by large-scale commercial and defense airframe production, creating structural dependencies that mirror broader U.S. consolidation trends in Tier-1 aerostructures. The state's supplier ecosystem reflects decades of prime contractor vertical integration and subcontractor rationalization, leaving procurement organizations with limited geographic diversification options for major assemblies. The concentration pattern here exemplifies the industrial base's broader challenge: high-value, complex manufacturing has consolidated around legacy production sites, reducing the Pentagon's ability to rapidly re-source production during supply chain disruptions or geopolitical contingencies.
+
+## Recommended Actions
+
+- **Immediate dual-source validation**: Program offices must audit all sole-source contracts above $100 million within this state portfolio to identify which systems lack qualified alternate suppliers and prioritize qualification investments accordingly.
+
+- **Workforce continuity planning**: Given concentration in a single state economy, develop contingency protocols with prime contractors for labor surge capacity, cross-training programs, and mutual aid agreements with adjacent aerospace production sites.
+
+- **Portfolio rebalancing targets**: Establish 36-month objectives to reduce Washington's share of critical subsystem contracts by 15-20% through directed investments in suppliers in other regions with available aerospace workforce and infrastructure.

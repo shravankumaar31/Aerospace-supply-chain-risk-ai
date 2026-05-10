@@ -1,0 +1,38 @@
+**SUPPLIER SEGMENT RISK BRIEF**  
+**NAICS 336413 — Other Aircraft Parts & Equipment Manufacturing**
+
+---
+
+**EXECUTIVE SUMMARY**
+
+This segment exhibits low composite risk (17.04/100) anchored by a robust workforce of 100,422 employees and minimal workforce vulnerability (3.70/100). The primary concern is moderate export concentration, with 30% of the segment's $510M in exports flowing to a single destination country.
+
+---
+
+**RISK DRIVERS**
+
+• **Export destination dependency**: The segment's export concentration risk score of 30.37/100 indicates meaningful reliance on one country for international sales, creating revenue exposure to bilateral trade disruptions or foreign policy shifts.
+
+• **Workforce stability advantage**: At 3.70/100, the workforce risk score signals strong labor market fundamentals across 100,422 employees, reducing concerns about talent pipeline constraints or sudden capacity losses.
+
+• **Modest export footprint**: Total segment exports of $510M represent a relatively small international revenue base for a 100K+ employee sector, suggesting predominantly domestic orientation with limited currency or foreign regulatory exposure.
+
+---
+
+**MARKET CONTEXT**
+
+Other Aircraft Parts & Equipment Manufacturing serves as a critical tier in the aerospace supply chain, feeding both primes and integrators with specialized components outside major airframe and propulsion categories. The segment's workforce scale — exceeding 100,000 employees — positions it as a significant industrial employer within the U.S. manufacturing base. The low composite risk profile reflects stable domestic demand dynamics and diversified end-use applications across commercial, defense, and general aviation platforms. However, the 30% export concentration to a single country introduces asymmetric trade risk not typical of more globally distributed aerospace segments.
+
+---
+
+**RECOMMENDED ACTIONS**
+
+• **Procurement**: Identify suppliers with >40% revenue exposure to the concentrated export destination; require commercial risk mitigation plans (alternate markets, contract hedges) in strategic sourcing agreements.
+
+• **Supply chain resilience**: Map geographic production footprint for sole-source components within this NAICS code to distinguish export dependency (a trade issue) from physical plant concentration (a business continuity issue).
+
+• **Program management**: Monitor bilateral trade policy developments with the primary destination country; build 90-day buffer stock or qualify secondary sources for long-lead parts where this segment represents single supply points.
+
+---
+
+**Word count: 329**

@@ -1,0 +1,20 @@
+## RISK BRIEF: Aircraft Engine & Engine Parts Manufacturing (NAICS 336412)
+
+### Executive Summary
+The aircraft engine and engine parts manufacturing segment presents a **Low** overall risk profile (composite score: 4.54), driven primarily by minimal workforce vulnerability. With 86,578 employees, this segment maintains sufficient labor depth to sustain current production demands without immediate supply disruption concerns.
+
+### Risk Drivers
+- **Workforce stability is exceptionally strong** with a workforce risk score of 4.54 out of 100, indicating negligible near-term attrition or skills-shortage pressure across the 86,578-person labor pool.
+- **Export dependency data unavailable**: No export concentration risk score or export value data exists for this segment, creating a critical blind spot in understanding foreign demand exposure and single-customer dependency at the national account level.
+- **Employment concentration suggests moderate consolidation**: 86,578 workers supporting the entire U.S. engine and engine parts industrial base signals a segment dominated by a limited number of large integrators, typical of high-barrier aerospace propulsion manufacturing.
+
+### Market Context
+Aircraft engine manufacturing represents one of the highest-value, most technically restricted tiers in the aerospace supply chain. The combination of substantial employment (86,578 workers) concentrated among a small number of OEMs and Tier-1 suppliers reflects long-standing consolidation in propulsion systems—a market historically controlled by three to four major players globally. The low workforce risk score suggests stable retention and training pipelines, likely sustained by long-cycle defense and commercial engine programs with multi-decade production runs. However, the absence of export and trade finance data limits visibility into how dependent this segment is on foreign military sales, commercial widebody exports, or single-nation contracts that could represent hidden concentration risk.
+
+### Recommended Actions
+- **Close the export data gap**: Procurement directors should commission a targeted analysis of FMS contracts and commercial engine export flows to assess single-customer and single-destination dependencies not captured in the current dataset.
+- **Monitor second-tier propulsion suppliers**: While OEM workforce risk is low, validate that sub-tier casting, forging, and specialty alloy suppliers face similar stability—these often face higher concentration and succession risk.
+- **Leverage low workforce risk for dual-sourcing pilots**: Use current labor market stability to negotiate knowledge-transfer agreements or qualify alternate propulsion component sources before workforce conditions tighten.
+
+---
+**Word count: 348**

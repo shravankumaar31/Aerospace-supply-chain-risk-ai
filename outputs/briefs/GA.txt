@@ -1,0 +1,25 @@
+# SUPPLIER RISK BRIEF: GEORGIA AEROSPACE SEGMENT
+
+## Executive Summary
+
+Georgia's aerospace supplier base presents high concentration risk, driven by an HHI score of 8,754 indicating near-monopolistic contract distribution among 308 recipients holding $42.9B in total obligations. The composite risk score of 87.54 places this segment in the top tier of supply chain vulnerability across the U.S. industrial base.
+
+## Risk Drivers
+
+- **Extreme contract concentration**: HHI of 8,754 (scale 0-10,000) signals that one or two prime recipients control the vast majority of Georgia's $42.9B aerospace contract portfolio, creating single-point-of-failure exposure for dependent programs.
+
+- **Disproportionate financial exposure**: 308 recipients collectively hold obligations exceeding $42B, yet concentration metrics indicate minimal diversification—fewer than 5% of these suppliers likely hold meaningful contract positions.
+
+- **High composite risk threshold**: The 87.54 composite score ranks Georgia among the most vulnerable state segments, reflecting compounded exposure across contract concentration, recipient fragility, and industrial base depth metrics.
+
+## Market Context
+
+Georgia hosts critical production for both commercial aviation and defense platforms, anchored by major final assembly and propulsion operations. The state's extreme HHI indicates the supplier ecosystem revolves around one or two dominant anchor tenants rather than a distributed network of capable Tier-1 and Tier-2 firms. This structure amplifies program risk when anchor operations face labor disputes, quality escapes, or facility disruptions. While Georgia benefits from established aerospace workforce pipelines and transportation infrastructure, the 308-recipient count suggests a shallow bench of credible alternates. Unlike diversified aerospace hubs, Georgia's concentration profile exposes multiple programs to correlated risk when the dominant supplier(s) experience operational or financial stress.
+
+## Recommended Actions
+
+- **Initiate dual-source qualification** for components currently sole-sourced to Georgia facilities controlled by the dominant contract holder, prioritizing long-lead and single-point-of-failure items within 90 days.
+
+- **Establish quarterly business health reviews** with Georgia recipients holding >$100M in obligations to gain early warning of financial distress, workforce attrition, or quality system degradation.
+
+- **Develop supplier development initiatives** targeting the 300+ non-dominant Georgia recipients to build depth in critical categories, including cost-share arrangements for AS9100 certification and advanced manufacturing adoption.

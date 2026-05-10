@@ -1,0 +1,142 @@
+[
+  {
+    "row_type": "STATE",
+    "state": "ID",
+    "naics_code": null,
+    "composite_risk_score": 100.0,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/ID.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:36:09.049402+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "ME",
+    "naics_code": null,
+    "composite_risk_score": 100.0,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/ME.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:36:24.513566+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "PR",
+    "naics_code": null,
+    "composite_risk_score": 100.0,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/PR.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:36:42.119637+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "RI",
+    "naics_code": null,
+    "composite_risk_score": 100.0,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/RI.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:36:58.162946+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "WI",
+    "naics_code": null,
+    "composite_risk_score": 100.0,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/WI.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-08T21:28:09.342330+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "MO",
+    "naics_code": null,
+    "composite_risk_score": 99.86,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/MO.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:37:15.296383+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "LA",
+    "naics_code": null,
+    "composite_risk_score": 98.63,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/LA.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:37:31.690670+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "WA",
+    "naics_code": null,
+    "composite_risk_score": 98.44,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/WA.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:37:49.814228+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "NV",
+    "naics_code": null,
+    "composite_risk_score": 93.22,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/NV.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:38:07.126434+00:00"
+  },
+  {
+    "row_type": "STATE",
+    "state": "GA",
+    "naics_code": null,
+    "composite_risk_score": 87.54,
+    "risk_tier": "High",
+    "brief_file_path": "outputs/briefs/GA.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:38:23.595059+00:00"
+  },
+  {
+    "row_type": "NAICS",
+    "state": null,
+    "naics_code": "336411",
+    "composite_risk_score": 46.43,
+    "risk_tier": "Medium",
+    "brief_file_path": "outputs/briefs/336411.txt",
+    "tokens_used": 1147,
+    "generated_at": "2026-05-10T01:58:49.553365+00:00"
+  },
+  {
+    "row_type": "NAICS",
+    "state": null,
+    "naics_code": "336412",
+    "composite_risk_score": 4.54,
+    "risk_tier": "Low",
+    "brief_file_path": "outputs/briefs/336412.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:38:43.062576+00:00"
+  },
+  {
+    "row_type": "NAICS",
+    "state": null,
+    "naics_code": "336413",
+    "composite_risk_score": 17.04,
+    "risk_tier": "Low",
+    "brief_file_path": "outputs/briefs/336413.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:38:58.858867+00:00"
+  },
+  {
+    "row_type": "NAICS",
+    "state": null,
+    "naics_code": "336414",
+    "composite_risk_score": 37.98,
+    "risk_tier": "Low",
+    "brief_file_path": "outputs/briefs/336414.txt",
+    "tokens_used": 0,
+    "generated_at": "2026-05-10T01:39:15.528073+00:00"
+  }
+]
