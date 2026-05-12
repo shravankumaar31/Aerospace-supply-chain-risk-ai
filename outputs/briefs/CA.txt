@@ -1,0 +1,25 @@
+# Supply Chain Risk Brief: California Aerospace Supplier Base
+
+## Executive Summary
+
+California's aerospace supplier base presents a **Low** overall risk profile (composite score: 16.82/100) despite commanding $125.4 billion in contract value across 1,396 recipients. The state's moderate market concentration (HHI: 1,682) balances large prime presence against sufficient competitive depth to mitigate single-source vulnerabilities.
+
+## Risk Drivers
+
+- **Scale concentration without market lock-in**: California holds $125.4 billion in aerospace contracts—the largest state allocation—yet maintains an HHI of 1,682, indicating no dominant monopolistic control despite the presence of major defense primes and commercial aerospace manufacturers.
+
+- **Broad supplier distribution**: With 1,396 distinct contract recipients, the state demonstrates meaningful industrial diversity that reduces exposure to individual supplier failures or capacity constraints.
+
+- **Moderate concentration flag**: The "Moderate" concentration risk label signals pockets of dependency within specific subsectors or commodities, warranting subsegment monitoring even as aggregate risk remains contained.
+
+## Market Context
+
+California anchors the U.S. aerospace industrial base with unmatched scale and breadth. The state's ecosystem spans commercial aviation (Southern California airframe integration), defense primes (missiles, space systems), and deep semiconductor/avionics supply chains concentrated in Silicon Valley corridors. While the 1,396-recipient count suggests distributed capacity, California's dominance in specialized niches—precision manufacturing, composite structures, mission software—creates hidden single-points-of-failure not captured in state-level aggregates. Regional workforce pipelines, particularly around Los Angeles and the Bay Area, remain critical to sustaining this capacity, though data on labor availability is not provided in this analysis.
+
+## Recommended Actions
+
+- **Map subsector dependencies**: Conduct NAICS-level drill-down within California's supplier base to identify commodities where concentration exceeds the state's 1,682 aggregate HHI, prioritizing sole-source or dual-source components.
+
+- **Monitor seismic and wildfire exposure**: Assess which of the 1,396 recipients operate in high-risk zones for natural disasters; develop continuity protocols for suppliers holding critical single-source positions.
+
+- **Benchmark against alternate states**: Compare California's per-recipient contract value and HHI against Texas, Washington, and Arizona aerospace corridors to evaluate strategic rebalancing opportunities without sacrificing technical capability.

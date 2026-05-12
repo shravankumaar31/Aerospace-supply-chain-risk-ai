@@ -1,0 +1,25 @@
+## Supply Chain Risk Brief: Massachusetts Aerospace Supplier Base
+
+### Executive Summary
+
+Massachusetts represents a $29.0 billion aerospace procurement segment with medium overall risk, driven primarily by high supplier concentration within the state's 373-recipient industrial base. The HHI score of 4,555 indicates market power is concentrated among a small number of prime contractors, creating single-source vulnerabilities despite the state's substantial contract volume.
+
+### Risk Drivers
+
+- **High concentration risk**: The HHI score of 4,555 exceeds the 2,500 threshold that antitrust regulators consider "highly concentrated," signaling that a handful of major recipients dominate Massachusetts aerospace procurement and create program-level dependencies.
+
+- **Limited recipient diversity**: Only 373 distinct recipients share $29.0 billion in contract value, yielding an average contract size of $77.7 million per recipient — well above typical subcontractor scales and indicating reliance on large integrators rather than a diversified supplier pyramid.
+
+- **Moderate composite risk**: The 45.55 composite score places Massachusetts in the medium-risk tier, reflecting exposure that warrants active monitoring but does not yet constitute crisis-level fragility across cost, schedule, and performance dimensions.
+
+### Market Context
+
+Massachusetts hosts critical aerospace engineering and advanced manufacturing capabilities, particularly in defense electronics, propulsion systems, and complex assemblies. The state's concentration pattern reflects the presence of major prime contractor facilities and Tier-1 suppliers rather than a broad small-supplier base. This structure creates path dependency: programs become locked into specific Massachusetts suppliers not purely on merit but due to prior investment, proprietary knowledge, and facility-specific tooling. While New England's technical workforce and research institutions provide long-term competitive advantages, the current industrial structure offers limited redundancy when a key Massachusetts supplier faces financial distress, labor disruption, or quality escapes.
+
+### Recommended Actions
+
+- **Map tier-2 dependencies**: Program managers must decompose the top 10 Massachusetts recipients by HHI contribution to identify which critical subsystems lack alternative domestic sources and require dual-source investments or strategic inventory.
+
+- **Monitor financial health of top-3 recipients**: Procurement directors should establish quarterly financial reviews for the three largest Massachusetts contractors, focusing on liquidity, capital expenditure trends, and workforce stability indicators.
+
+- **Develop regional contingency playbooks**: Supply chain risk teams must pre-position contract vehicles and qualification roadmaps for out-of-state alternates on high-value Massachusetts sole-source items, reducing response time if disruption occurs.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -8,6 +9,11 @@ import plotly.express as px
 import streamlit as st
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.ai.brief_generator import generate_brief, save_brief  # noqa: E402
+
 DATA_PATH = PROJECT_ROOT / "data" / "processed" / "supplier_segments.csv"
 BRIEFS_DIR = PROJECT_ROOT / "outputs" / "briefs"
 
@@ -144,12 +150,35 @@ def render_detail_panel(row: pd.Series) -> None:
 
     identifier = brief_identifier(row)
     st.markdown("#### Risk Brief")
-    brief = load_brief(identifier) if identifier else None
-    if brief:
-        with st.container(border=True):
-            st.markdown(brief)
+
+    if identifier is None:
+        st.info("No brief identifier available for this segment.")
+        return
+
+    existing_brief = load_brief(identifier)
+    brief_slot = st.empty()
+
+    if existing_brief:
+        with brief_slot.container(border=True):
+            st.markdown(existing_brief)
+        button_label = "Regenerate Brief"
     else:
-        st.info("No brief available for this segment.")
+        button_label = "Generate AI Brief"
+
+    if st.button(button_label, key=f"gen_brief_{identifier}"):
+        with st.spinner("Generating brief with Claude AI..."):
+            try:
+                segment_data = row.to_dict()
+                new_brief = generate_brief(segment_data)
+                save_brief(segment_data, new_brief)
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"Failed to generate brief: {exc}")
+            else:
+                with brief_slot.container(border=True):
+                    st.markdown(new_brief)
+                st.success("Brief generated successfully")
+    elif not existing_brief:
+        brief_slot.info("No brief available for this segment. Click 'Generate AI Brief' to create one.")
 
 
 def build_choropleth(state_df: pd.DataFrame):
