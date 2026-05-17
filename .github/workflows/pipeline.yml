@@ -1,15 +1,47 @@
 name: Pipeline
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
 
 jobs:
-  pipeline:
+  run-pipeline:
     runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Placeholder
-        run: echo "pipeline will run here"
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run USASpending ingestion
+        run: python src/ingest/usaspending.py
+
+      - name: Run Census trade ingestion
+        run: python src/ingest/census_trade.py
+
+      - name: Run BLS employment ingestion
+        run: python src/ingest/bls_employment.py
+
+      - name: Run unified pipeline
+        run: python src/transform/run_pipeline.py
+
+      - name: Run tests
+        run: pytest tests/ -v
+
+      - name: Upload risk scores artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supplier-segments
+          path: data/processed/supplier_segments.csv
+          retention-days: 30
