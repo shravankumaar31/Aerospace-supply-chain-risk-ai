@@ -209,6 +209,12 @@ def build_unified_table(
     # Start from usaspending as the spine (preserves state dimension)
     merged = usaspending.copy()
 
+    # When usaspending.naics_code is all-null, groupby coerces it to float64,
+    # which won't merge against the string naics_code columns in census/bls.
+    # Normalize all three to object dtype before merging.
+    for frame in (merged, census, bls):
+        frame["naics_code"] = frame["naics_code"].astype("object")
+
     # Outer-join census export_value on naics_code
     merged = merged.merge(census, on="naics_code", how="outer")
 

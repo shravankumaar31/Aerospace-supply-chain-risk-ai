@@ -130,6 +130,7 @@ def print_top10(hhi: pd.DataFrame) -> None:
 
 
 def main() -> None:
+    """Compute HHI concentration scores per state and persist them to SQLite."""
     print("=== Concentration Risk — Day 6/21 ===\n")
 
     print(f"Loading awards from {CSV_INPUT} ...")

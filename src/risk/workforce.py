@@ -186,7 +186,7 @@ def print_results(metrics_by_naics: dict) -> None:
     print("=" * col_w + "\n")
 
 
-def main():
+def main() -> None:
     """Entry point: compute workforce risk scores and persist results."""
     bls = load_bls(BLS_CSV)
 

@@ -1,12 +1,20 @@
+"""Streamlit dashboard for the aerospace supply chain risk intelligence project.
+
+Renders a choropleth map, filterable segment table, detail panel with metrics
+and AI-generated risk briefs, and sector overview cards. Reads the unified
+supplier_segments.csv produced by the transform pipeline.
+"""
+
 from __future__ import annotations
 
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from plotly.graph_objects import Figure
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
@@ -56,10 +64,27 @@ SECTOR_SHORT_NAMES = {
 
 @st.cache_data
 def load_data(path: Path) -> pd.DataFrame:
+    """Load the supplier_segments CSV from disk, with Streamlit caching.
+
+    Args:
+        path: Path to ``supplier_segments.csv``.
+
+    Returns:
+        The full supplier-segments DataFrame.
+    """
     return pd.read_csv(path)
 
 
 def brief_identifier(row: pd.Series) -> Optional[str]:
+    """Return the file-stem identifier for a segment row's brief.
+
+    Args:
+        row: One row from supplier_segments.
+
+    Returns:
+        Two-letter state code for STATE rows, NAICS code string for NAICS
+        rows, or ``None`` when neither is available.
+    """
     if row.get("row_type") == "STATE" and pd.notna(row.get("state")):
         return str(row["state"])
     if row.get("row_type") == "NAICS" and pd.notna(row.get("naics_code")):
@@ -68,6 +93,14 @@ def brief_identifier(row: pd.Series) -> Optional[str]:
 
 
 def load_brief(identifier: str) -> Optional[str]:
+    """Load a saved brief from ``outputs/briefs/``.
+
+    Args:
+        identifier: State code or NAICS code stem.
+
+    Returns:
+        Brief text, or ``None`` if no file exists for the identifier.
+    """
     path = BRIEFS_DIR / f"{identifier}.txt"
     if not path.exists():
         return None
@@ -75,6 +108,14 @@ def load_brief(identifier: str) -> Optional[str]:
 
 
 def risk_badge(tier: str) -> str:
+    """Render a colored HTML pill for a risk tier.
+
+    Args:
+        tier: Risk tier label (``High``/``Medium``/``Low``/``Minimal``).
+
+    Returns:
+        Inline HTML span styled with the tier color.
+    """
     color = RISK_TIER_COLORS.get(tier, "#6c757d")
     return (
         f"<span style='background-color:{color};color:white;"
@@ -83,25 +124,60 @@ def risk_badge(tier: str) -> str:
     )
 
 
-def fmt_number(val, decimals: int = 2) -> str:
+def fmt_number(val: Any, decimals: int = 2) -> str:
+    """Format a numeric value with thousands separators.
+
+    Args:
+        val: Numeric value (may be ``None`` or NaN).
+        decimals: Decimal places to render.
+
+    Returns:
+        Formatted number, or an em-dash for missing values.
+    """
     if val is None or pd.isna(val):
         return "—"
     return f"{val:,.{decimals}f}"
 
 
-def fmt_metric(val, na_label: str = "N/A", decimals: int = 2) -> str:
+def fmt_metric(val: Any, na_label: str = "N/A", decimals: int = 2) -> str:
+    """Format a metric value for ``st.metric`` display.
+
+    Args:
+        val: Numeric value (may be ``None`` or NaN).
+        na_label: Label to display when the value is missing.
+        decimals: Decimal places to render.
+
+    Returns:
+        Formatted number, or ``na_label`` when missing.
+    """
     if val is None or pd.isna(val):
         return na_label
     return f"{val:,.{decimals}f}"
 
 
-def fmt_int(val) -> str:
+def fmt_int(val: Any) -> str:
+    """Format an integer count with thousands separators, or ``N/A``.
+
+    Args:
+        val: Integer-like value (may be ``None`` or NaN).
+
+    Returns:
+        Formatted integer string.
+    """
     if val is None or pd.isna(val):
         return "N/A"
     return f"{int(val):,}"
 
 
-def fmt_money(val) -> str:
+def fmt_money(val: Any) -> str:
+    """Format a USD amount with B/M shorthand for large values.
+
+    Args:
+        val: Dollar amount (may be ``None`` or NaN).
+
+    Returns:
+        Compact dollar string (``$1.23B``/``$45.6M``) or ``N/A``.
+    """
     if val is None or pd.isna(val):
         return "N/A"
     if val >= 1e9:
@@ -112,12 +188,25 @@ def fmt_money(val) -> str:
 
 
 def segment_label(row: pd.Series) -> str:
+    """Build a human-readable label for a supplier-segment row.
+
+    Args:
+        row: One row from supplier_segments.
+
+    Returns:
+        ``State: XX`` for STATE rows or ``NAICS NNNNNN — Label`` for NAICS rows.
+    """
     if row.get("row_type") == "STATE":
         return f"State: {row.get('state', '')}"
     return f"NAICS {row.get('naics_code', '')} — {row.get('naics_label', '')}"
 
 
 def render_detail_panel(row: pd.Series) -> None:
+    """Render the selected segment's metrics and risk-brief panel.
+
+    Args:
+        row: One row from supplier_segments to display.
+    """
     st.markdown("### Selected Segment")
 
     name_col, tier_col = st.columns([3, 1])
@@ -181,7 +270,16 @@ def render_detail_panel(row: pd.Series) -> None:
         brief_slot.info("No brief available for this segment. Click 'Generate AI Brief' to create one.")
 
 
-def build_choropleth(state_df: pd.DataFrame):
+def build_choropleth(state_df: pd.DataFrame) -> Figure:
+    """Build the USA-state choropleth of composite risk scores.
+
+    Args:
+        state_df: DataFrame restricted to STATE rows with non-null
+            ``state`` and ``composite_risk_score``.
+
+    Returns:
+        A Plotly Figure ready to pass to ``st.plotly_chart``.
+    """
     fig = px.choropleth(
         state_df,
         locations="state",
@@ -219,6 +317,11 @@ def build_choropleth(state_df: pd.DataFrame):
 
 
 def render_sector_cards(df: pd.DataFrame) -> None:
+    """Render one card per NAICS sector with composite score and sub-metrics.
+
+    Args:
+        df: Full supplier_segments DataFrame; NAICS rows are filtered internally.
+    """
     st.markdown("### Sector Risk Overview")
     naics_rows = df[df["row_type"] == "NAICS"].copy()
     if naics_rows.empty:
@@ -247,6 +350,15 @@ def render_sector_cards(df: pd.DataFrame) -> None:
 
 
 def find_default_selection(df: pd.DataFrame) -> Optional[pd.Series]:
+    """Return the highest-risk STATE row, used as the default panel selection.
+
+    Args:
+        df: Full supplier_segments DataFrame.
+
+    Returns:
+        The top STATE row by ``composite_risk_score``, or ``None`` if no
+        STATE rows exist.
+    """
     states = df[df["row_type"] == "STATE"].copy()
     if states.empty:
         return None
@@ -255,6 +367,7 @@ def find_default_selection(df: pd.DataFrame) -> Optional[pd.Series]:
 
 
 def main() -> None:
+    """Compose and render the Streamlit dashboard page."""
     st.set_page_config(
         page_title="Aerospace Supply Chain Risk Intelligence",
         layout="wide",
